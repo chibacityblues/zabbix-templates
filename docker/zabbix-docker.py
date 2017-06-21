@@ -43,13 +43,13 @@ def stateOfContainer(client, container):
 if __name__ == "__main__":
 
     if len(sys.argv) > 1:
-        client = docker.Client(base_url='unix://var/run/docker.sock')
+        client = docker.APIClient(base_url='unix://var/run/docker.sock')
         if sys.argv[1] == 'list':
             import json
             containerList = client.containers()
             sys.exit(nameOfContainer(containerList))
         else:
-            client = docker.Client(base_url='unix://var/run/docker.sock')
+            client = docker.APIClient(base_url='unix://var/run/docker.sock')
             sys.exit(stateOfContainer(client, sys.argv[1]))
     else:
         print 'Please run script with list or container name'
